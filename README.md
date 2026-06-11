@@ -1,4 +1,4 @@
-# 🤖 Mini AI Aggregator
+# Mini AI Aggregator
 
 A beginner-friendly Python web app that sends your prompt to **3 different AI providers** at once and shows you the responses side by side so you can compare them.
 
@@ -6,14 +6,14 @@ Inspired by [Eden AI](https://www.edenai.run/) — but simplified for learning!
 
 ---
 
-## ✨ What It Does
+##  What It Does
 
 1. You type a question or prompt in a text box
 2. Click **"Compare AI Responses"**
 3. The app sends your prompt to **3 AI providers simultaneously**:
-   - 🧠 **OpenAI** (GPT-3.5-turbo)
-   - 🔵 **Cohere** (Command model)
-   - 🟣 **HuggingFace** (Mistral-7B-Instruct)
+   - **Groq** (Llama 3 70B)
+   - **Cohere** (Command R)
+   - **Mistral AI** (Mistral Small)
 4. You see all 3 responses in **side-by-side columns**
 5. Each response shows:
    - The AI's answer
@@ -26,11 +26,11 @@ Inspired by [Eden AI](https://www.edenai.run/) — but simplified for learning!
 
 ```
 MiniAIAggregator/
-├── app.py                  # 🚀 Main app - run this to start!
-├── openai_api.py           # OpenAI function (GPT-3.5-turbo)
-├── cohere_api.py           # Cohere function (Command model)
-├── huggingface_api.py      # HuggingFace function (Mistral-7B)
-├── .env                    # 🔐 Your API keys (keep this secret!)
+├── app.py                  # Main app - run this to start!
+├── groq_api.py             # Groq function (Llama 3 70B)
+├── cohere_api.py           # Cohere function (Command R)
+├── mistral_api.py          # Mistral AI function (Mistral Small)
+├── .env                    #  Your API keys (keep this secret!)
 ├── .gitignore              # Tells Git to ignore .env
 ├── requirements.txt        # List of Python packages to install
 └── README.md               # This file - instructions for you!
@@ -53,32 +53,32 @@ You need to sign up for **free API keys** from each provider. None of them requi
 
 | Provider | Where to Sign Up | What You Get |
 |---|---|---|
-| **OpenAI** | [platform.openai.com/api-keys](https://platform.openai.com/api-keys) | $5 free credit (no credit card) |
+| **Groq** | [console.groq.com/keys](https://console.groq.com/keys) | Free API key (no credit card) |
 | **Cohere** | [dashboard.cohere.com/api-keys](https://dashboard.cohere.com/api-keys) | Free tier API key |
-| **HuggingFace** | [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens) | Free inference API token |
+| **Mistral AI** | [console.mistral.ai/api-keys](https://console.mistral.ai/api-keys) | Free API key (1M tokens/day) |
 
 **Quick steps for each:**
 
-**OpenAI:**
-1. Go to [platform.openai.com](https://platform.openai.com) and sign up
-2. Go to [API Keys](https://platform.openai.com/api-keys)
-3. Click "Create new secret key"
-4. Copy the key (it starts with `sk-...`)
+**Groq:**
+1. Go to [console.groq.com](https://console.groq.com) and sign up
+2. Go to [API Keys](https://console.groq.com/keys)
+3. Click "Create API Key"
+4. Copy the key (it starts with `gsk_...`)
 
 **Cohere:**
 1. Go to [cohere.com](https://cohere.com) and sign up
 2. Go to [API Keys](https://dashboard.cohere.com/api-keys)
 3. Copy your API key
 
-**HuggingFace:**
-1. Go to [huggingface.co](https://huggingface.co) and sign up
-2. Go to [Settings → Access Tokens](https://huggingface.co/settings/tokens)
-3. Click "New token", give it a name, select "read" role
-4. Copy the token
+**Mistral AI:**
+1. Go to [console.mistral.ai](https://console.mistral.ai) and sign up
+2. Go to [API Keys](https://console.mistral.ai/api-keys)
+3. Click "Create new API key"
+4. Copy the key
 
 ---
 
-## 🚀 How to Install and Run
+## How to Install and Run
 
 ### Step 1: Open your terminal
 
@@ -98,9 +98,9 @@ pip install -r requirements.txt
 
 This installs:
 - **streamlit** — creates the web interface
-- **openai** — connects to OpenAI's API
+- **groq** — connects to Groq's API
 - **cohere** — connects to Cohere's API
-- **requests** — connects to HuggingFace's API
+- **requests** — connects to Mistral AI's API
 - **python-dotenv** — loads your API keys from the `.env` file
 
 ### Step 4: Add your API keys
@@ -109,12 +109,12 @@ This installs:
 2. Replace the placeholder values with your actual API keys:
 
 ```bash
-OPENAI_API_KEY=sk-your_actual_openai_key_here
+GROQ_API_KEY=gsk-your_actual_groq_key_here
 COHERE_API_KEY=your_actual_cohere_key_here
-HUGGINGFACE_API_KEY=your_actual_huggingface_token_here
+MISTRAL_API_KEY=your_actual_mistral_key_here
 ```
 
-⚠️ **Important:** Never share your `.env` file or commit it to GitHub! The `.gitignore` file already prevents this.
+ **Important:** Never share your `.env` file or commit it to GitHub! The `.gitignore` file already prevents this.
 
 ### Step 5: Run the app!
 
@@ -126,17 +126,17 @@ Your browser should automatically open at `http://localhost:8501`. If it doesn't
 
 ---
 
-## 🎮 How to Use the App
+## How to Use the App
 
 1. Type a question in the text box (e.g., "What is machine learning?")
-2. Click the **"🚀 Compare AI Responses"** button
+2. Click the **" Compare AI Responses"** button
 3. Wait a few seconds while the app calls all 3 AI providers
 4. See the responses displayed side by side in 3 columns
 5. Compare the response times and word counts!
 
 ---
 
-## 🧠 How the Code Works (For Beginners)
+## How the Code Works (For Beginners)
 
 ### `app.py` — The Main File
 
@@ -146,7 +146,7 @@ This is the heart of the app. It:
 3. When you click "Compare", it calls the 3 API functions
 4. Displays the results in 3 columns using `st.columns(3)`
 
-### `openai_api.py`, `cohere_api.py`, `huggingface_api.py`
+### `groq_api.py`, `cohere_api.py`, `mistral_api.py`
 
 Each of these files contains **one function** that:
 1. Takes your prompt text and an API key
@@ -162,19 +162,19 @@ If an API call fails (wrong key, no internet, etc.), the app **doesn't crash**. 
 
 ---
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 | Problem | Solution |
 |---|---|
 | `pip install` fails | Make sure Python is installed: `python --version` |
 | "API keys not found" | Check your `.env` file has the correct keys and is in the right folder |
 | "Module not found" error | Run `pip install -r requirements.txt` again |
-| HuggingFace is slow | Free tier models can take 30-60 seconds to load initially |
+| Mistral AI is slow | Free tier has rate limits — responses may take a few seconds |
 | App doesn't open in browser | Go to `http://localhost:8501` manually |
 
 ---
 
-## 📚 What You'll Learn
+## What You'll Learn
 
 This project teaches you:
 - **How APIs work** — sending requests and getting responses over the internet
@@ -186,7 +186,7 @@ This project teaches you:
 
 ---
 
-## 🚀 Going Further (Ideas for Next Steps)
+## Going Further (Ideas for Next Steps)
 
 Once this works, try:
 - Add more AI providers (Google Gemini, Anthropic Claude, etc.)
@@ -197,6 +197,6 @@ Once this works, try:
 
 ---
 
-## 📄 License
+## License
 
 This project is for learning purposes. Feel free to use, modify, and share it!
