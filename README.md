@@ -2,7 +2,7 @@
 
 A beginner-friendly Python web app that sends your prompt to **3 different AI providers** at once and shows you the responses side by side so you can compare them.
 
-Inspired by [Eden AI](https://www.edenai.run/) — but simplified for learning!
+Inspired by [Eden AI](https://www.edenai.run/) — but simplified for learning! 
 
 ---
 
