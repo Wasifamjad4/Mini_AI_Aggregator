@@ -1,0 +1,25 @@
+# ============================================================
+# Mini AI Aggregator - Git Ignore
+# ============================================================
+# This file tells Git which files to NOT upload to GitHub.
+# API keys, sensitive data, and temporary files go here.
+
+# API keys file (contains your secrets - NEVER commit this!)
+.env
+
+# Python cache files (automatically created when you run Python)
+__pycache__/
+*.pyc
+*.pyo
+
+# Streamlit cache
+.streamlit/
+
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# macOS system files
+.DS_Store

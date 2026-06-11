@@ -1,0 +1,10 @@
+# ============================================================
+# Mini AI Aggregator - Dependencies
+# ============================================================
+# Install with: pip install -r requirements.txt
+
+streamlit          # Web UI framework - turns Python scripts into web apps
+groq               # Official Groq Python library (for mixtral-8x7b-32768)
+cohere             # Official Cohere Python library
+requests           # For making HTTP requests to HuggingFace API
+python-dotenv      # Loads API keys from .env file into environment variables
